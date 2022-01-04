@@ -44,7 +44,7 @@
             $currentAddress = $address[$i];
             for($j = $i+1; $j<$jlimit; ++$j)
             {
-                if($currentAddress > $address[$j])
+                if(strcasecmp($currentAddress,$address[$j]) > 0)
                 {
                     $tempVal = $address[$j];
                     $address[$j] = $currentAddress;
