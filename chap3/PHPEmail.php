@@ -44,7 +44,8 @@
             $currentAddress = $address[$i];
             for($j = $i+1; $j<$jlimit; ++$j)
             {
-                if(strcasecmp($currentAddress,$address[$j]) > 0)
+                // if(strcasecmp($currentAddress,$address[$j]) > 0)
+                if(preg_match("/^[\w-]+(\.[\w-]+)*@" . "[\w-]+(\.[\w-]+)*(\.[A-Za-z]{2,})$/i", $address[$j])==1)
                 {
                     $tempVal = $address[$j];
                     $address[$j] = $currentAddress;
