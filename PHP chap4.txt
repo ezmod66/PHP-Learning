@@ -1,0 +1,33 @@
+-------------------------
+	Chapter 4
+-------------------------
+
+using autoglobals
+	2 most common ways that php interfaces with the user is by accessiing values from fill-in forms that are submitted to a php script by handling events 
+	such as dynamically displaying pages when the user clicks a hyperlinnk. The data needs to process these interactionsis stored in php auto globals.
+
+	Auto globals are associative arrays which are arrays whos elements referred to with an alphanumeric key instead of an index number.
+	Environmental variables that programs use to interact with the system. _env the elements in the $_ENV change depending on the operating system and machine confifg.
+	$_SERVER[] - contains info about the web server and php scripting engine
+	$_ENV	- Contains information about the environtment. Programs use to interact with the system.
+
+Building html web forms
+	Interactive controls that allow users to enter data in text input boxes Web forms provice methods for electronically submitting the 
+`	form data entered by a user to the program onthe server to process input.
+	Web forms are used whenever server requires user input.eg order processing, billing, subscribing to email to newsletter, searching web forms
+	web forms aree standard html page. only diff is the web form requires form tag and the markup contains controlls.
+
+adding action attribute
+	form opening tag requires an action attribute the value identies the program on the server that will process the form data when submitted. php often used to process form data.
+
+adding method attribute
+	opening form tag must also contain a method attribute which defines how the form data is submitted to the server.
+	method will either be post or get.
+	post form data is embedded in the request message. 
+	get the form data is appended to the url specified in the forms action attribute
+	when you click submit each field on the form is sent to the server as a key/value pair. 
+	when post is used the name portion of the name/value pair becomes the key and the index of the element in the post array and the value is assigned as the value of the array element.
+	when get is used the same happens except the name portion of the name/value pair gecomes the key of an element in the get array.
+	the get method to submit form data to the processing script the form data is appended to the url specified by the action attribute. name/value pair is appended to the end of the url called url tokens.
+	the form is separated by a ? mark and each individual element is separated by a & and the element name is separated from the value by an equal sign =
+	spaces in the name and value field are encoded as a + and all other chars except letters numbers - _ and . are encoded using a % sign followed by the 2 digit hex representaion of the chars ascii value

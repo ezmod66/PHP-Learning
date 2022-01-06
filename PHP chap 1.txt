@@ -1,0 +1,74 @@
+-------------------------
+	Chapter 1
+-------------------------
+	open source serverside scripting language.
+	php is designed to fill the gap between static html and dynamic pages.
+	php is embedded into the XHTML source code.
+	called an embedded language because code like js it is directly put into the web page as a separate section.
+	needs to have a file extention of .php unless you use the php tag to add it onto the page.
+	if a request is made for a document with .php server sends the file to the scripting engine for processing. 
+	- scripting engine then processes and php it encounters.the scripting engine ignores any non php code and only processes the php code it finds in the code block
+	- server then returns the results of the script and andy html or xhtml elements found in the file to the client. where file is rendered by clients web browser.
+	- the results are returned from script eg db recods and formatted with html elements.
+	- this means php code is never sent to client web browser only the results are generated
+	php not case sensative.
+	php is a loosyly typed language.
+	Zend is php's scripting engine
+
+	Strongly typed language - languages require you to define the type of value variable contains.
+	Loosely typed language	-	you are not required to declare data types of variables.(Not allowed)
+
+
+Code Blocks
+ 	php written inside code declared blocks which are separate sections of the page that are inerpreted by the scripting engine.
+ 	can include as many code blocks are you want within a document.
+	use <?php and ?> delimeters to  mark the start and end of a code segment. Anything between these lags is considered php by the scripting engine.
+	individual lines of a php script are called statements.
+	each statement is ended in a ; this does not end the line. This should not be confused.
+	use php correctly inside a xhtml or html element eg <p> <?php  echo " Hello "; ?> </p>
+	you can also use <script "language = "php"> </script> tag to declare or write your php
+
+	<script "language = "php">
+	echo "This works";
+	</script>
+	This is become deprecated and the script tag with a language attribute will now normally be skipped by the scripting engine.
+
+	using short php delimeters
+	<? echo "asdas"; ?>
+	Note that we should avoid using short delimeters as servers and isps may not allow short tags to be used. Stick to using <?php ?> tags as it will be allowed on majority of the servers that 
+	have php enabled and allowed to be used.
+
+	there is an asp style script delimiter that is being used to develop scripts that looks like this  <%  echo "Hello";  %>
+	Same as the short delimetrs this should be avoided as this needs to be enabled on the server for it to be able to be used. Little reason to use them
+
+Funcations
+	subroutine that performs a specific task. Collection of statements.
+	needs to be invoked or called for it to do something.
+	
+	each language has their own built in functions. a origrannubg kabgyage cibstryct us a built in feature of a programming language. 
+	
+	print returns a 1 if successful or a 0 if failed. echo does not return a value
+
+Constants
+	All upper case. Never changing can be initialized by typing define(CONST_NAME, const value); unlike variables constatns do not begin with a $ as they are not a normal variable
+	A good example of a constant naming and declaring standard is as follows   Declare -> define("DATE_OF_BIRTH", "1234/11/22");   calling the constant  DATE_OF_BIRTH
+	You can change a constants case sensativity by using the 3rd paramater with is a true or false define(CONST_NAME, const value, true/false);
+
+Arrays
+	init the array $provices = new []. adding to the array $provinces[] = "Tie";
+	$provinces[] = "Hello";
+	$provinces[1] = "Hello"; 
+
+Building Expressions
+	expression is a literal value or variable that you evaluate by the scripting engine to produce a result.
+	using opperands(Variables and literals) and operators are symbols such as + = *
+
+	Binary operator requires an operand before and after the operator.	$mynumber = 100
+	unary operator requires a single operand either before or after the operator. i++
+
+type casting
+	casting / type casting copies the value contained in variable of one data type into variable of another data type.
+	syntax  $newvariable = (new_type) $OldVariable;
+	Pretty dam useful when dealing with type checking from user inputs. getType() function
+
+Chapter review on pg 63

@@ -1,0 +1,131 @@
+-------------------------
+	Chapter 2
+-------------------------
+
+	Controlling flow of code and decision making during program execturion are the two most fundamental skills required in programming.
+
+Functions
+	lines of code that make up a function are called a function definition. correct syntax is as follows
+	
+	<?php
+	function nameOfFunction(Paramater)
+	{
+		statements;
+	}
+	?>
+	Function names are case insensative here.
+
+Return Values
+	you can return a value from a function to a calling statment by assigning the calling statement to a varaible.
+	
+Passing values as a reference
+	normally value of a variable is passed as atbhe parameter of a function.
+	php passes the parameter by value which means that a local copy of the variable is created to be used by the function.
+	you can pass the parameter by reference insead of the local actual variable any changes to that variable made by the 
+	function will remain after the function completes.
+	to pass by ref you insert & before the dollar sign of the parameter name in the function declaration.
+	eg
+
+	function IncrementByvalue($CountByValue) {
+            ++$CountByValue;
+            echo "<p>IncrementByValue() value is $CountByValue.</p>";
+        };
+
+	function IncrementByvalue(&$CountByReference) {
+            ++$CountByReference;
+            echo "<p>IncrementByValue() value is $CountByReference.</p>";
+        };
+
+understanding variable scope
+	thinking about where in the program a variable is declared..
+	global variable is declared outside a function an is available to all parts of the program.
+	local variable is declared in a function and have limited scope unless it is passed as reference or value is returned.
+	
+	to make a variable global you have to use the global keyword.
+	As in the example of having a a variable with global defined before it. global $name; it does not have to havea  value assigned. That can be done later
+	Not much else to say about global variables.
+
+switch statements
+	Similar to ifs but the switch statement compares value of the expression to value of contained with a special statement called a case label
+	case label represents a specific value and contains one or more statements that execute if the case label matches.
+	faster than if statements, readability is cleaner
+	
+	switch(expression)
+	case label:
+		statment/s
+		break;
+	case label:
+		statment/s
+		break;
+while statements
+	repeatedly loops while condition is met. when it is false it stops.
+	while(condition)
+	{
+		echo 1+2
+	}
+	each loop that is finished is called an iteration.
+	Need to add logic into the loop that will change the condition or you define the contition before had eg $count = 1
+
+	while($count < 100)
+	{
+		do shit
+	}
+
+do...while loop statement
+	executes a statement or statements once then repeats the execution as long as the conditional expression evaluates to true.
+	do
+	{
+		statements/s
+	}while(condition)
+
+for loop statement
+	used for repeating a statement or series of statements as long as a given conditional expression evaluates to true
+	different from while because it add a counter and changes the value with each iteration. this is useful as it allows you a specific place to declare and init a count to update its value which helps prefent infinate loops.
+	for(init counter; condition; counter increment)
+	{
+		statement/s
+	}
+	
+	when interpreter encounters a for loop
+	- counter declared and init (init expression only started once when loop is first encountered)
+	- condition evaluated
+	- if step above is true loop executes statements once complete start over from step 2 if the conition is false
+	  looping ends
+
+foreach statement
+	used to loop through the elements in an array.
+	with each iteration the loop moved to the next array element.
+	unlike other loops you dont need to use a counter instead specify an array expression within parenthesis.
+
+	foeach($array_name as $variable_name) 
+	{
+		statments
+	}
+	you use the variable name to access the value of the element that is available in the iteration.
+	a more advanced for of the foreach loop allows you retrieve both the index or key and the value of each array element
+
+	foreach($array_name as $index_name => $variable_name)
+	{
+		statements
+	}
+	works almost exactly the same as the basic form only difference is the index of the current arra element is stored.
+
+	$daysOfWeek = array["Monday","Tuesday", "Wednesday", "Thursday", "Friday"];
+	foreach($daysOfWeek as $dayNumber => $day)
+	{
+		echo "<p> Day $dayNumber is $day</p>"
+	}
+
+including files
+	include
+	include_once
+	require
+	require_once
+	these are considered language constructs build for php to reuse content on multiple pages
+	
+	include statement only generates a warning if the include file cannot be found.
+	where as the require statement halts the processing of the web page and displays an error message if the included file cannot be found.
+	the once statement are similar to the normal statements except they assure that the external file is added to the script only once which 
+		helps avoid conflicts with variables and values or function names that might occur if the file was included multiple times.
+	php scripting engine starts fresh for each included file this means that if you use php code to include a file it must be contained in php tags
+	usually include files are named include_nameOfFile to make it easier to understand what is being added.	

@@ -1,0 +1,124 @@
+-------------------------
+	Chapter 3	string manipulations.
+-------------------------
+
+constructing text strings
+	strings can be inside single '' or  double "" quotes. Generally you want to keep to using the "" for a uniform string area.
+	can use strings as either string literals such as echo "<p>Hello there</p>" or you can assign them to a variable $stringVariable = "Hello there";
+	or pring out a variable such as echo $stringVariable.
+
+string operators
+	concatenation operator is a . example $string = "Hello " . " My Name is:" . $name;
+	
+adding escape characters and sequences
+	careful when you are using '' or "" as if you need to add grammer you will have to scape the word so that the code will display correctly.
+	escape character tells compiler or interpreter that the character fthat follows it has a special purpose
+	in php \ backslash is the escape character so if you want to escape a character you can put it infont of an apostrophe. example echo '<p> This code\'s going to work</p>';
+	no need to use escape character if you have "" in the string.
+	escape characters they can be used pg 129	
+	if you are including a path in a string such as C:\\myPC\123\home.txt you will have to double escale it so it will come out like C:\\myPC\\123\\home.txt
+
+simple and complex string syntax
+	values and variables can be combined in leteral strings using simple or complex syntax.
+	simple string syntax allows you touse the value of a variable withing a string by including the variable name inside ta text string enclosed by double quotation marks
+		when php encounters a dollar sign within  a text string it attempts to evaluate any characters that follow the dollar sign as part of the variable name.
+	complex string syntax normally has {$string} around it.
+
+Counting characters and words in a string
+	count vs strlen php doesnt consider a string as and array of chars. so you can not use count of a string. you need to use strlen to get the length of a string
+	str_word_count() will count the groupings of chars in a string separated by a space.
+	where as strlen will count how many chars are contained in a single string
+
+Modifying the case of a string
+	strtoupper() - convert every char in string to upper case
+	strtolower() - convert every char in string to lower case
+	ucfirst() - Change first character in string to upper
+	lcfirst() - change first character in string to lower
+	ucwords() - each word will have an upper character at the start
+
+encoding and decoding a string
+	htmlspecialchars() and htmlspecialchars_decode() are used when processing a string.
+	there are 5 reserved characters < > " ' &
+	to display these as text you should encode them to get the html character entities 
+	htmlspecialchars()  converts any occurrrence of these five chars to their equivalent html entity.
+	htmlspecialchars_decode does the reverse of course.
+	take for example a password will be encoded or passed to md5() which will make a hash which can be compared against he stored hash. if its valid its correct.
+
+other ways to manipulate a string
+	if the string has leading or trailing spaces the trim() function will remove them. to get rid of only leading usse ltrim() or rtrim to get rid of following (left/right trim)
+	to return a portion of a string use substr().
+		this function takes the input string as the first parameter, starting position, length of string to return as optional third parameter
+		pg 139 if you want to know more.
+
+finding and extracting characters and substrings
+	parsing when applied to strings is the act of dividing a string into logical components and substrings or tokens
+	think of it as extraction of information from a string literal or variable.
+	strpos() performs a case-sensitive search and returns the position of the first occurrence of a substring within a string.
+		it takes 2 arguements string to search, substring value to search. returns position of the char in the string.
+		to find out if a string contains a value you would use the strict equal operators
+		=== or !== false or true.
+
+replacing characters and substrings
+	str_replace() abd str_ireplace() both accept 3 parameters:  search term, replacement string, string to replace characters in
+		returns a new string rather than replacing it.
+	$newEmail = str_replace("president", "vice.president");
+
+Dividing strings into smaller pieces
+	delimiter is a character or string used to separate components in a list.
+	strtok() break strings into smaller string called tokens. be careful of having a space next to your delimiter as this can cause problems.
+	check out passwordfields.php and chap 3 pg 150
+
+Converting between strings and arrays
+	str_split() or explode() to split a string into an indexed array.
+	str_split() splits each character into a string into an array element. you can alsto have str_split(string[, length]); length represents number of characters you want to assign to each array element.
+	explode() splits a string into an indexed array at a specified separator,  explode(separator, string); 
+	implode() combines array elements into a single string separated by a specified character.
+
+comparing strings
+	each string lower or upper has an ascii value assigned to it. Comparing nromally will cause problems because if you compare if strings are the same it will compare assci values rather than lieral values
+	strcasecmp() 	- performs a case-insensitive comparison of strings.
+	strcmp()	- case sensative comparison.
+	strncmp()	- compare case sensative string up to a cetain value. string,string, 4
+	both functions accept two arguements as strings to compare.
+
+similarity of two strings
+	similar_text() returns number of similar characters the strings have in common
+	levenshtein() tells number of characters to change for strings to be the same
+	checking if words are pronounced the same. you can use soundex() and metaphone()
+
+working with regular expressions
+	patterns that are used for matching and manipulating strings according to specified rules.  Mostly used with validating user input
+	preg_match() methods can be used to handle this. you pass a pattern as first arguement and string second which to search. the function returns 	1 if if specific pattern matches or 0 if not
+	cant use letter numer or a backslash as a delimiter character. most common is the /
+	consist of literal characters and meta chars whaich are special chars define the pattern matching rules in the regular expression
+pg 162 chap 3
+
+matching chars
+	. is used to match any single character in a pattern. specifies pattern must contain a value where period is located.
+	^ anochrs characters to the beginning of a string. 
+	$ anchors characters to the end of a a string
+	anochors specifies that the pattern must appear at the particular position in the string.
+	to escape a period you need to use a \ to escape it if it is in a string. so /\.
+	
+	$currency = "123.45";
+	echo preg_match('/^\$/', $currency); returns 1
+	echo preg_match('/^\\\$/', $currency); returns 1
+	
+matching quanity
+	metachars that specify quanity of a match are called quantifiers
+	? specified that a pattern is optional.
+	+ one or more sequential occurrences of the preceding characters match
+	* specifies that zero or more ocurrences of the proceeding characters match.
+	{} quantifiers allow range and specific needs/ also can be used to specify the number of times a char occurs
+
+specifying subexpressions
+	chars contained in a set of parentheses in a regular expression are called sub expression or sub patterns
+	sub expressions allow you to determine the format and quantities of the endlosed characters as a group
+	"/^(1 )?(\(.{3}\) )?(.{3})(\-.{4})$/"
+	
+defining Character classes
+	you use character classes in regular expressions to treat multiple characters as a single item.
+	you create a character class by ([]) any character included in the class represents alternate characters that are allowed in a pattern maatch.
+	you can include alphabetical or numerics in a char class range
+	
+	
