@@ -4,10 +4,10 @@
 
 using autoglobals
 	2 most common ways that php interfaces with the user is by accessiing values from fill-in forms that are submitted to a php script by handling events 
-	such as dynamically displaying pages when the user clicks a hyperlinnk. The data needs to process these interactionsis stored in php auto globals.
+	such as dynamically displaying pages when the user clicks a hyperlinks. The data needs to process these interactionsis stored in php auto globals.
 
 	Auto globals are associative arrays which are arrays whos elements referred to with an alphanumeric key instead of an index number.
-	Environmental variables that programs use to interact with the system. _env the elements in the $_ENV change depending on the operating system and machine confifg.
+	Environmental variables that programs use to interact with the system. $_env the elements in the $_ENV change depending on the operating system and machine config.
 	$_SERVER[] - contains info about the web server and php scripting engine
 	$_ENV	- Contains information about the environtment. Programs use to interact with the system.
 
@@ -31,3 +31,48 @@ adding method attribute
 	the get method to submit form data to the processing script the form data is appended to the url specified by the action attribute. name/value pair is appended to the end of the url called url tokens.
 	the form is separated by a ? mark and each individual element is separated by a & and the element name is separated from the value by an equal sign =
 	spaces in the name and value field are encoded as a + and all other chars except letters numbers - _ and . are encoded using a % sign followed by the 2 digit hex representaion of the chars ascii value
+	Get method is useful as a debugging technique because it allows you to see the names and values being sent to the webserver.
+	Get method is also useful for creating static links to a dynamic server process.
+
+Processing Form Data
+	Second part of the procedure for using webforms is processing the form data once it is submitted. This is done in a form handler. a script/program that processes the information submitted from a web form.
+	the form handler includes code for verifying that the user entered the minimum amount of data needed to process the form. validating data entry and performing any tasks needed for the data submitted.
+
+retrieving submitted data
+	once form is submitted fnale lname and submit are assigned to the keys in the post autoglobal array. and values entered become the values
+
+handeling special characters
+	addslashes() function accepts single argument representing the text string you want to escape and returns a string containing the scaped string.
+	stripslashes() - removes any slashes that occur before a single ' quote double " or a null char. Good to use
+
+how to correctly handle a form.
+1	determine if the form variables contain values you can use empty() for this if the variable has a nonempty or nonzero value. it is true if variable has an empty " " or zero value
+2	validate user input. validate numeric data.  check if numeric is_numeric() can.
+	validate strings trim() and stripslashes()
+	Best way is to record the error usually in an array and continue processing the form. users can then go back and correct the errors once 
+	
+	using a sticky form is better than the former. as it makes it easier for the user to fill in information
+
+emailing the web form
+	mail(recipient(s), subject,message) - value assigned to the recipien(s) argument is a string of one or more email addresses in standard format for an address specifier.
+	address specifiers are the pain e-mail address and the recipients name followed by the email address in eg <js@gmail.com>
+	subject field is a text string that apears as the subject field of the email. should be plan text with no tags
+	message field plain text.
+	additional header arguements can include from cc bcc date header. each header needs to be on its own line. like start with header name followed by a : a space ad the header element value eg Date: friday,03 apri 2009 16:05:50 -500
+	mail() function returns true if message was sent successfully or false if not.
+
+	$to = "webmaster@example.edu";
+	$Subject = "Message from the web form";
+	$message = $formMessage;
+	$Headers = "From: $fname $lname <$emailAddress>";
+	mail ($to, $subject, $Message, $headers);
+
+creating an all in one form
+	if you have a large form with many fields and if form needs intensive processing you ant to separate it. A we have been doing it it is called a two-part form.
+	All in one form a single script uised to display web for and process its data. when the user clicks the submit button the script submits the form data to the current script. 
+	you then use validation codes to check if the data exists when the page is first dispalyed.
+
+validating all in one form
+	an all in one uses an if condition to determine if data has been submitted frm the web form or if the web page has been viewed for the first time
+	isset() - can be used to determine if the $_POST["submit"] has been set. (if the submit btn was pressed)
+	
