@@ -11,11 +11,6 @@
         $firstName = validateInput($_POST['fName'], "first name");
         $lastName = validateInput($_POST['lName'], "Last Name");
 
-        // if($errorCount > 0)
-        // {
-        //     echo "Please re-enter the information below.<br /> \n";
-        //     redisplayForm($firstName,$lastName);
-        // }
 
         $to = "shaun.carrington@overseasam.com";
 	    $subject = "scholarship form results";
