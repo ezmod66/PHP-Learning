@@ -4,7 +4,7 @@
 
 using autoglobals
 	2 most common ways that php interfaces with the user is by accessiing values from fill-in forms that are submitted to a php script by handling events 
-	such as dynamically displaying pages when the user clicks a hyperlinks. The data needs to process these interactionsis stored in php auto globals.
+	such as dynamically displaying pages when the user clicks a hyperlinks. The data needs to process these interactions is stored in php auto globals.
 
 	Auto globals are associative arrays which are arrays whos elements referred to with an alphanumeric key instead of an index number.
 	Environmental variables that programs use to interact with the system. $_env the elements in the $_ENV change depending on the operating system and machine config.
@@ -14,8 +14,8 @@ using autoglobals
 Building html web forms
 	Interactive controls that allow users to enter data in text input boxes Web forms provice methods for electronically submitting the 
 `	form data entered by a user to the program onthe server to process input.
-	Web forms are used whenever server requires user input.eg order processing, billing, subscribing to email to newsletter, searching web forms
-	web forms aree standard html page. only diff is the web form requires form tag and the markup contains controlls.
+	Web forms are used when ever server requires user input.eg order processing, billing, subscribing to email to newsletter, searching web forms
+	web forms are standard html page. only diff is the web form requires form tag and the markup contains controlls.
 
 adding action attribute
 	form opening tag requires an action attribute the value identies the program on the server that will process the form data when submitted. php often used to process form data.
@@ -76,3 +76,22 @@ validating all in one form
 	an all in one uses an if condition to determine if data has been submitted frm the web form or if the web page has been viewed for the first time
 	isset() - can be used to determine if the $_POST["submit"] has been set. (if the submit btn was pressed)
 	
+Displaying dynamic content based on a URL Token
+	unlike post method the get method is ideal for embedding options in a hyperlink.
+	by passing url tokens to a php script many different types of info can be displayed from the same script. Web page templates can have an additional advantage of giving all of the pages consistent user interfaces.
+
+	using web page template
+		the structure of a php powered website is often developed using a template. a single web page that is divided into sections .
+		using the include function to include header footer and other re accuring elements. You can use a web page template with a dynamic content section that will change but the content and layout of the static sections will not
+
+	Navigating within a template
+		you can navigate using hyperlinks and buttons. just as you can with static pages but there are some minor differences. When using text hyperlinsk to navigate within a web page template, the values that specify which dynamic ontent to show my be
+		appended to the filename in the href attrubute of the anchor tag. You use the notation for the get method discussed earlier in this chapter. with a ? at the end of the url.
+		eg <a href= "index.php?page=home_page">Home<\a>
+	img buttons
+		<input type="image" src="home.jpg" name="home" style="border:0 alt="Home">
+		form image btns dont pass a value. They will pass a x and y coordinate from the form
+		it will come out as $_POST["Button.x"] and $_POST["Button.y"] the array will have 2 elements
+
+
+summary on pg 218
