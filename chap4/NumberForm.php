@@ -12,7 +12,7 @@
     $displayForm = true;
     $number = "";
 
-    if(isset($_POST['Submit']))
+    if(isset($_POST['submit']))
     {
         $number = $_POST['number'];
 
@@ -39,7 +39,7 @@
     else
     {
         echo "<p>Thank you for entering a number.</p>\n";
-        echo "<p>Your number, $number, squared is " . ($numer * $number)."</p>";
+        echo "<p>Your number: $number, squared is " . number_format($number * $number,2)."</p>";
         echo "<p><a href=\"NumberForm.php\"></p>\n";
     }
     
