@@ -1,0 +1,91 @@
+-------------------------
+	Chapter 5
+-------------------------
+
+2 important concepts when working with files. 
+FileTypes which effect how information is stored in files and retrieved from them. 
+Permissions determine actionsthat a specific user can and cannot perform.
+
+Working with Files and Directories
+	understanding file types and permissions.
+		php you can specify a file as one of 2 types.
+			binary file
+				contains series of characters or bytes for which php attaches no special meaning. 
+				any structure to the data is determined by the application that reads/writes to it.
+			text file
+				is assumed to have only printable characters and a small set of control or formatting characters.(binary equivalent of escape sequences)
+		each OS has its own escape characters that is works with. mac is \r, windows \n\r, unix/linux  carriage \n and \r line feed. 
+		if the incorrect end of line escape sequence is used there will be problems when working with text files
+working with file permissions
+	access of files is dependent on file permissions. Normally it is the creater of the file who can grand permissions else the network admin will grant access to users
+	read write modify and execute. 3 levels of access for files, user or owner | all users | user groups
+
+	changing permissions
+		php provides chmod() for changing permissions of a file within php chmod(filename, mode(read write execute)
+		to 4 digit octal (base 8) is used when assigning permissions.Remember cycle move permissions. rwerwe-e
+	checking permissions
+		php provides fileperms(filename).returns integer bitmap of the permissions associated with the file.
+		easier to undertand with php decoct() to convert a decimal value into an octal
+
+working with directories
+	opendir() is used to open a handle to the directory. A handle is a special type of variable to represent a resource such as a file.
+	readdir() can be used to return the file and directory names from the open directory. each time readdir() is called it moves a directory pointer to the next entry in the directory
+	A directory pointer is a special typ of variable that refers to the currently selected record in the directory listing.
+	when firrst opened directory pointer is reset. after it reaches the end of a directory it will return false
+	scandir() which returns an indexed array with names of files and derectories in the specified directory. 
+	using for loop to output the results.
+
+creating directories
+	mkdir() is used to create directories within the current directory. simply add name of directry to arguement.
+	to create a new directory simple mkdir("volunteers");
+	to create a new directory in a location other than the current directory you can use a relative or reletive path. eg mkdir(../event); absolute path making a directory in another folder mkdir("bin/php/utilities");
+	if you create a directory that already exists you will get a error. you will also recieve a warning if you attempt to create a new directory within a directory that doesn't exist
+
+obtaining file and directory information
+	is_readable() is_writable() is_executable() check the permissions of a file or directory to determine whether the php scripting engine has read write or execute permissions.
+	is_dir() is_file and is_link() functions are used to differentiate among the three most common entries in a listing.
+	a symbolic link which is identified with the is_link() is a reference to another file else where on the system not a file it's self.
+	because each of these functions returns false if a file does not exist the file_exists function does not need to be used.
+	using these functions will make sure a script runs smoothly
+	
+Uploading and downloading Files
+
+some sites allow a client or a user to upload files. or download
+	uploading
+		uploaded in php through forms. The form method needs to be post. an additional attribute named enctype must be added to the opening form tag and must be set to multipart/form-data form. this 
+		allows the web browser the post multiple sections. one for the regular form data and one for the file contents.
+		next a input type of file within the form allows the user to select a file. most browsers allow a browse button.You may want to limit file size so you would use a hidden field this field bust be named MAX_FILE_SIZE and precede the file input field.
+	retrieving
+		When the form is posted info for the uploaded file i stored in the $_Files[] global arrray.
+		calling the file you use the syntax of $_Files[filefield][key]. filefield is name of file and key is one of the 5 key types pg 248
+
+	storing uploaded files.
+		Take into account many different things when determining how a file will be dealt with when uploaded.
+		should uploaded files be immediately avaiable or if they need to be verified first. If the file needs verification to that it is virus free or of the appropriate type.  
+		if verified needed store in sandbox area outside of public accessibility.
+		is the file public? or a private file. public file can be stored within pblic folder structure. private stored outside of public folder structure.
+		once destination is chosen you can use move_uploaded_file() from temp location to permanent destination.
+		move_uploaded_file(filename, destination) function returns true and false depending on success or fail.
+		after the function above you need to ensure you have the correct privledges. You have to change them so you can control file access.
+		use chmod(filename, 0644) after
+
+	downloading files
+		if the file is in a public directory you can use an anchor tag link and the browser will download the file for the user.
+		if file is not public simplest way is to use the $_GET[] using php allows you to validate the users privledge level and that the file is still available for download.
+		headers are information sent to the web browser from the web server that tell the browser about the data being sent.
+		header types = Content-Description, Content-Type, Content-Disposition, Content-Transfer-Encoding, Content-Length
+		headers need to be sent before any web content. Make sure <?php is on the first line.
+		content-type if you want the download to appear in the client's web browser as if it were a normal file. use mime type for the file.
+		pg 254
+
+Reading and writing entire files
+	writing entire file.
+		file_put_contents() writes text strings to a file. the syntax for this function is file_put_contents(filename, string[[, options])
+		if file name does not exist it will be created. however if the file does exist any data in the file will be over written. That is the only downfall.
+		you pass in the string you want to pass into the file as with the name of the file to write to.
+		microtime() function generates a unique filename. returns a string containing two values separated by a space. first is deci val showing current fraction of sec. SEcond is the current date and time in sec because current date/time val stored in file name.
+		not very good to use in real world app just for practise purposes.
+		You can add a third arguement to the file_put_contents()
+		File_use_include_path() instructs php to search for the specified filename in the path that is assigned to the include_path
+		file_append() instructs php to append data to any existing contents in the specified filename instea of overwriting
+			
