@@ -3,7 +3,7 @@
 
 
 <hr>
-relooking over the book PHP programming with mysql second edition by Don Gosselin, Diana Kokoska, Robert Easterbrooks As well as a few other sources i will be including
+using the book PHP programming with mysql second edition by Don Gosselin, Diana Kokoska, Robert Easterbrooks As well as a few other sources i will be including
 
 <hr>
 
