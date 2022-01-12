@@ -50,7 +50,7 @@
 
                     if(is_file($fullEntryName))
                     {
-                        echo "<a href=\"$fullEntryName\">" . htmlentities($entry). "</a>";
+                        echo "<a href=\"fileDownloader.php?filename=$entry\">" . htmlentities($entry) . "</a>\n";
                     }
                     else
                     {
