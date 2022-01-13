@@ -11,34 +11,53 @@
         //specify comments directory
         $dir = "comments";
         //check if directory
-        if(is_dir($dir))
-        {   //check if form submitted
-            if(isset($_POST['save']))
-            {   //check if name entered
-                if(empty($_POST['name']))
-                {
-                    $savingString = "unknown Visitor\n";
-                }
-                else
-                {   //remove unessessary things in string + add date + comment
-                    $saveString = stripslashes($_POST['email']) . "\n";
-                    $saveString .= date('r') . "\n";
-                    $saveString .= stripslashes($_POST['comment']);
-                    //get current time stamp
-                    $CurrentTime = microtime();
-                    //change to array with " "
-                    $timeArray = explode(" ", $CurrentTime);
-                    $timeStamp = (float)$timeArray[1] + (float)$timeArray[0];
-                    //file name is comment.seconds.microseconds.txt
-                    $saveFileName = "$dir/comment.$timeStamp.txt";
-                    //add info to file
-                    if(file_put_contents($saveFileName,$saveString)>0)
-                    {
-                        echo "File \"" . htmlentities($saveFileName) .  "\" . <br />\n";
-                    }
+        // if(is_dir($dir))
+        // {   //check if form submitted
+        //     if(isset($_POST['save']))
+        //     {   //check if name entered
+        //         if(empty($_POST['name']))
+        //         {
+        //             $savingString = "unknown Visitor\n";
+        //         }
+        //         else
+        //         {   //remove unessessary things in string + add date + comment
+        //             $saveString = stripslashes($_POST['email']) . "\n";
+        //             $saveString .= date('r') . "\n";
+        //             $saveString .= stripslashes($_POST['comment']);
+        //             //get current time stamp
+        //             $CurrentTime = microtime();
+        //             //change to array with " "
+        //             $timeArray = explode(" ", $CurrentTime);
+        //             $timeStamp = (float)$timeArray[1] + (float)$timeArray[0];
+        //             //file name is comment.seconds.microseconds.txt
+        //             $saveFileName = "$dir/comment.$timeStamp.txt";
+        //             //add info to file
+        //             if(file_put_contents($saveFileName,$saveString)>0)
+        //             {
+        //                 echo "File \"" . htmlentities($saveFileName) .  "\" . <br />\n";
+        //             }
 
-                }
+        //         }
+        //     }
+        // }
+
+        $fp = fopen($saveFileName, "wb");
+
+        if($fp === FALSE)
+        {
+            echo "There was an error creating \"" . htmlentities($saveFileName) . "\".<br/>\n";
+        }
+        else
+        {
+            if(fwrite($fp, $SavingString)>0)
+            {
+                echo "Successfully wrote to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
             }
+            else
+            {
+                echo "There was an error writing to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
+            }
+            fclose($fp);
         }
     ?>
 
