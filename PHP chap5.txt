@@ -33,7 +33,7 @@ working with directories
 	A directory pointer is a special typ of variable that refers to the currently selected record in the directory listing.
 	when firrst opened directory pointer is reset. after it reaches the end of a directory it will return false
 	scandir() which returns an indexed array with names of files and derectories in the specified directory. 
-	using for loop to output the results.
+	using forloop to output the results.
 
 creating directories
 	mkdir() is used to create directories within the current directory. simply add name of directry to arguement.
@@ -88,4 +88,15 @@ Reading and writing entire files
 		You can add a third arguement to the file_put_contents()
 		File_use_include_path() instructs php to search for the specified filename in the path that is assigned to the include_path
 		file_append() instructs php to append data to any existing contents in the specified filename instea of overwriting
-			
+
+	reading file
+		You can use the file_get_contents to read the entire file
+
+FileStreams
+		stream is a channel that is used for accessing a resource to which you may read/write.
+		input stream reads reads data from resource file 
+		output stream writes data to a resource
+	opening
+		need to write code that handles opening and closing a file.
+		fopen(filename, method) check methods on pg 268
+		fclose(filename) making sure space in memory is not wasted		
