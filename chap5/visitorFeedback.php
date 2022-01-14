@@ -16,9 +16,9 @@
     
     if(is_dir($dir))
     {
-        $commentFile = scandir($dir);
+        $commentFiles = scandir($dir);
 
-        foreach($commentFile as $fileName)
+        foreach($commentFiles as $fileName)
         {
             if(($fileName != ".") && ($fileName != ".."))
             {
@@ -31,7 +31,8 @@
                 $commentLines = count($comment);
                 echo "Comment:<br/>\n";
 
-                for($i = 3; $i < $CommentLine; ++$i)
+                // var_dump($comment);
+                for($i = 3; $i < $commentLines; ++$i)
                 {
                     echo htmlentities($comment[$i]) . "<br/>\n";
                 }

@@ -40,7 +40,7 @@
         //         }
         //     }
         // }
-
+        $saveFileName = "comments";
         $fp = fopen($saveFileName, "wb");
 
         if($fp === FALSE)
