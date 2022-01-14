@@ -40,22 +40,51 @@
         //         }
         //     }
         // }
-        $saveFileName = "comments";
-        $fp = fopen($saveFileName, "wb");
+        // fwrite fclose()
+        // $saveFileName = "comments";
+        // $fp = fopen($saveFileName, "wb");
 
-        if($fp === FALSE)
+        // if($fp === FALSE)
+        // {
+        //     echo "There was an error creating \"" . htmlentities($saveFileName) . "\".<br/>\n";
+        // }
+        // else
+        // {
+        //     if(fwrite($fp, $SavingString)>0)
+        //     {
+        //         echo "Successfully wrote to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
+        //     }
+        //     else
+        //     {
+        //         echo "There was an error writing to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
+        //     }
+        //     fclose($fp);
+        // }
+
+        // adding flock() to file usage
+        $saveFileName = "comments";
+        $fp = fopen($saveFileName,"wb");
+        if($fp === false)
         {
-            echo "There was an error creating \"" . htmlentities($saveFileName) . "\".<br/>\n";
+            echo "there was an error creating \"" . htmlentities($saveFileName) . "\".<br/>";
         }
         else
         {
-            if(fwrite($fp, $SavingString)>0)
+            if(flock($fp, LOCK_EX))
             {
-                echo "Successfully wrote to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
+                if(fwrite($fp, $saveString) > 0 )
+                {
+                    echo "successfully wrote to file \"". htmlentities($saveFileName) . "\".<br>";
+                }
+                else
+                {
+                    echo "there was a error writing to file \"". htmlentities($saveFileName) . "\". <br>";
+                    flock($fp, LOCK_UN);
+                }
             }
             else
             {
-                echo "There was an error writing to file \"" . htmlentities($saveFileName) . "\" . <br/>\n";
+                echo "There was an " . "error locking file\"" . htmlentities($saveFileName) . " for writing\"."."<br>";
             }
             fclose($fp);
         }

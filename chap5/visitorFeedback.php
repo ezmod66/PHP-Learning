@@ -14,6 +14,33 @@
     <?php
     $dir = "comments";
     
+    // if(is_dir($dir))
+    // {
+    //     $commentFiles = scandir($dir);
+
+    //     foreach($commentFiles as $fileName)
+    //     {
+    //         if(($fileName != ".") && ($fileName != ".."))
+    //         {
+    //             echo "From <strong> $fileName </strong><br>";
+               
+    //             $comment = file($dir . "/" . $fileName);
+    //             echo "From: " . htmlentities($comment[0]). "<br>\n";
+    //             echo "Email Address: " . htmlentities($comment[1]) . "<br /> \n";
+    //             echo "Date: " . htmlentities($comment[2]) . "<br/>\n";
+    //             $commentLines = count($comment);
+    //             echo "Comment:<br/>\n";
+
+    //             // var_dump($comment);
+    //             for($i = 3; $i < $commentLines; ++$i)
+    //             {
+    //                 echo htmlentities($comment[$i]) . "<br/>\n";
+    //             }
+    //             echo "<hr/>\n";
+    //         }
+    //     }
+    // }
+
     if(is_dir($dir))
     {
         $commentFiles = scandir($dir);
@@ -24,19 +51,33 @@
             {
                 echo "From <strong> $fileName </strong><br>";
                
-                $comment = file($dir . "/" . $fileName);
-                echo "From: " . htmlentities($comment[0]). "<br>\n";
-                echo "Email Address: " . htmlentities($comment[1]) . "<br /> \n";
-                echo "Date: " . htmlentities($comment[2]) . "<br/>\n";
-                $commentLines = count($comment);
-                echo "Comment:<br/>\n";
+                $fp = fopen($dir . "/" . $fileName, "rb");
 
-                // var_dump($comment);
-                for($i = 3; $i < $commentLines; ++$i)
+                if($fp === false)
                 {
-                    echo htmlentities($comment[$i]) . "<br/>\n";
+                    echo "There was an error reading file \"" . $fileName . "\" . <br>";
                 }
-                echo "<hr/>\n";
+                else
+                {
+                    // echo "From <strong> $fileName</strong> <br>";
+                    $from = fgets($fp);
+                    echo "From: " . htmlentities($from) . "<br>";
+                    $email = fgets($fp);
+                    echo "Email Address: " . htmlentities($email). "<br>";
+                    $date = fgets($fp);
+                    echo "Date: " . htmlentities($date) ."<br>";
+                    echo "comment: <br>";
+                    $comment = "";
+
+                    while(!feof($fp))
+                    {
+                        $comment .= fgets($fp);
+                    }
+                    echo htmlentities($comment) . "<br>";
+                    echo "<hr />";
+
+                    fclose($fp);
+                }
             }
         }
     }
