@@ -18,8 +18,6 @@ I will be using the book "PHP programming with mysql second edition by Don Gosse
   <li><p>Database Manipulation           - pending</p></li>
   <li><p>State Information               - pending</p></li>
   <li><p>Development with OOP            - pending</p></li>
-  <li><p></p></li>
-
 </ul>
 
 <hr>
