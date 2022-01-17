@@ -11,9 +11,9 @@ $bugReports = [];
 
        $bugReports[] = $array;
     }
-    echo "<pre>";
-    var_dump($bugReports);
-    echo "</pre>";
+    // echo "<pre>";
+    // var_dump($bugReports);
+    // echo "</pre>";
 
 ?>
 <!DOCTYPE html>
@@ -33,8 +33,13 @@ $bugReports = [];
     <!-- allow to update the report -->
     <p>Select to modify Report <br>
     </p><select name="bugReports" id="">
-        <option value=""></option>
         <?php
+            $count = 0;
+            foreach($bugReports as $report)
+            {   
+                echo "<option value='$count'>$report[0]</option>";
+                ++$count;
+            }
         ?>
     </select>
     <button>Modify Bug report</button>
@@ -73,6 +78,7 @@ $bugReports = [];
                 if (fwrite($bugs,$reportName.",". $prodName . "," . $prodVer . "," . $hardwareType . "," . $os . "," . $freq . "," . $proposedSolution . "\n")) {
                     echo "Successfully saved to file";
                     $_POST = array();
+                    header("Refresh:0");
                 } else {
                     echo "cannot save this bug report";
                 }
@@ -81,9 +87,6 @@ $bugReports = [];
             }
         }
     }
-    
-
-
     function displayRequired($fieldName)
     {
         echo    "The field\"$fieldName\" is required.<br />\n";
