@@ -10,6 +10,7 @@ foreach ($eachLine as $lines) {
 
     $bugReports[] = $array;
 }
+
 // echo "<pre>";
 // var_dump($bugReports);
 // echo "</pre>";
@@ -34,7 +35,7 @@ foreach ($eachLine as $lines) {
             $count = 0;
             foreach ($bugReports as $report) {
                 echo "<option value='$count'>$report[0]</option>";
-                ++$count;
+                ++$count;     
             }
             ?>
         </select>
@@ -43,14 +44,27 @@ foreach ($eachLine as $lines) {
     </form>
 
     <?php 
+    if(isset($_GET['show']))
+    {
+        $reportName = $bugReports[$_GET['bugReportSelection']][0];
+        $prodName = $bugReports[$_GET['bugReportSelection']][1];
+        $prodVer = $bugReports[$_GET['bugReportSelection']][2];
+        $hardwareType = $bugReports[$_GET['bugReportSelection']][3];
+        $os = $bugReports[$_GET['bugReportSelection']][4];
+        $freq = $bugReports[$_GET['bugReportSelection']][5];
+        $proposedSolution = $bugReports[$_GET['bugReportSelection']][6];
+    }
+    else
+    {
+        $reportName = "";
+        $prodName = "";
+        $prodVer = "";
+        $hardwareType = "";
+        $os = "";
+        $freq = "";
+        $proposedSolution = "";
+    }
     
-    $reportName = $bugReports[$_GET['bugReportSelection']][0];
-    $prodName = $bugReports[$_GET['bugReportSelection']][1];
-    $prodVer = $bugReports[$_GET['bugReportSelection']][2];
-    $hardwareType = $bugReports[$_GET['bugReportSelection']][3];
-    $os = $bugReports[$_GET['bugReportSelection']][4];
-    $freq = $bugReports[$_GET['bugReportSelection']][5];
-    $proposedSolution = $bugReports[$_GET['bugReportSelection']][6];
 
     ?>
     <form action="bugs.php" method="post">
@@ -59,13 +73,14 @@ foreach ($eachLine as $lines) {
         <p>Version: <br><input type="text" name="productVersion" value="<?php echo $prodVer; ?>" required></p>
         <p>Type of Hardware: <br> <input type="text" name="typeOfHardware" value="<?php echo $hardwareType; ?>" required></p>
         <p>Operating System: <br><select name="OS" required>
-                <option value="Mac">Mac</option>
-                <option value="Windows"> Windows</option>
-                <option value="Linux">Linux</option>
-                <option value="Other">Other</option>
+                <option value="Mac"<?php if($os === "Mac"){ echo "Selected";}?>>Mac</option>
+                <option value="Windows"<?php if($os === "Windows"){ echo "Selected";}?>> Windows</option>
+                <option value="Linux"<?php if($os === "Linux"){ echo "Selected";}?> >Linux</option>
+                <option value="Other"<?php if($os === "Other"){ echo "Selected";}?>>Other</option>
             </select></p>
         <p>Frequency of occurrence: <br><input type="text" name="<?php echo $freq; ?>" value="<?php echo $freq ?>" required></p>
-        <p>Proposed Solutions: <br><textarea name="proposedSolution" value='<?php echo $proposedSolution?>' cols="30" rows="10" required></textarea></p>
+        <p>Proposed Solutions: <br><textarea name="proposedSolution" value="<?php echo $proposedSolution?>" cols="30" rows="10" required></textarea></p>
+
         <p><input type="reset" value="Reset Form">&nbsp;&nbsp;<input type="submit" value="Modify Report" name="submit"></p>
     </form>
 
