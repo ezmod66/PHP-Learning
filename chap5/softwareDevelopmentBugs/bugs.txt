@@ -1,0 +1,5 @@
+No Coffee,Jacobs,1.102,coffeeeee,Other,2 per day,no coffee today :(
+image not displaying,samsung,5.0,Monitor,Windows,constant,Buy a new Monitor
+Software Compatability problem,Windows,2.0,Destop tower,Other,Since Last week,no idea
+No Coffee,Coffee filter,1.102,coffee machine,Mac,often,asd
+No Coffee,Coffee,1.0a,yes,Mac,often,adggg
