@@ -11,6 +11,7 @@ foreach ($eachLine as $lines) {
     $bugReports[] = $array;
 }
 
+echo $_GET['bugReportSelection'];
 // echo "<pre>";
 // var_dump($bugReports);
 // echo "</pre>";
@@ -34,8 +35,24 @@ foreach ($eachLine as $lines) {
             <?php
             $count = 0;
             foreach ($bugReports as $report) {
-                echo "<option value='$count'>$report[0]</option>";
-                ++$count;     
+                if(isset($_GET['bugReportSelection']))
+                {
+                    if($_GET['bugReportSelection'] == $count)
+                    {
+                        echo "<option value='$count' selected>$report[0]</option>";
+                        ++$count;
+                    }
+                    else
+                    {
+                        echo "<option value='$count'>$report[0]</option>";
+                        ++$count; 
+                    }
+                }
+                else
+                {
+                    echo "<option value='$count'>$report[0]</option>";
+                    ++$count; 
+                }              
             }
             ?>
         </select>
@@ -65,9 +82,8 @@ foreach ($eachLine as $lines) {
         $proposedSolution = "";
     }
     
-
     ?>
-    <form action="bugs.php" method="post">
+    <form action="bugReportModify.php" method="post">
         <p>Bug Report Name:<br><input type="text" name="bugReportName" value='<?php echo $reportName; ?>' required></p>
         <p>Product Name: <br><input type="text" name="productName" value="<?php echo $prodName;?>" required></p>
         <p>Version: <br><input type="text" name="productVersion" value="<?php echo $prodVer; ?>" required></p>
@@ -79,11 +95,16 @@ foreach ($eachLine as $lines) {
                 <option value="Other"<?php if($os === "Other"){ echo "Selected";}?>>Other</option>
             </select></p>
         <p>Frequency of occurrence: <br><input type="text" name="<?php echo $freq; ?>" value="<?php echo $freq ?>" required></p>
-        <p>Proposed Solutions: <br><textarea name="proposedSolution" value="<?php echo $proposedSolution?>" cols="30" rows="10" required></textarea></p>
+        <p>Proposed Solutions: <br><textarea name="proposedSolution" id="proposedSolution" cols="30" rows="10" required><?php echo $proposedSolution;?></textarea></p>
 
         <p><input type="reset" value="Reset Form">&nbsp;&nbsp;<input type="submit" value="Modify Report" name="submit"></p>
     </form>
 
+    <?php
+
+    saveToFile($_POST['submit']);
+
+    ?>
 </body>
 
 </html>
