@@ -55,9 +55,10 @@ some sites allow a client or a user to upload files. or download
 		uploaded in php through forms. The form method needs to be post. an additional attribute named enctype must be added to the opening form tag and must be set to multipart/form-data form. this 
 		allows the web browser the post multiple sections. one for the regular form data and one for the file contents.
 		next a input type of file within the form allows the user to select a file. most browsers allow a browse button.You may want to limit file size so you would use a hidden field this field bust be named MAX_FILE_SIZE and precede the file input field.
+		pg 250 example exercise to use
 	retrieving
 		When the form is posted info for the uploaded file i stored in the $_Files[] global arrray.
-		calling the file you use the syntax of $_Files[filefield][key]. filefield is name of file and key is one of the 5 key types pg 248
+		calling the file you use the syntax of $_Files[filefield][key]. filefield is name of file and key is one of the 5 key types pg 248 and 255 example exercise
 
 	storing uploaded files.
 		Take into account many different things when determining how a file will be dealt with when uploaded.
@@ -96,7 +97,54 @@ FileStreams
 		stream is a channel that is used for accessing a resource to which you may read/write.
 		input stream reads reads data from resource file 
 		output stream writes data to a resource
+		using a file stream involved fopen() open-> write/read data from stream -> close stream fclose()
 	opening
 		need to write code that handles opening and closing a file.
-		fopen(filename, method) check methods on pg 268
-		fclose(filename) making sure space in memory is not wasted		
+		fopen(filename, method) check methods on pg 268.
+			a = w only, point to end create file if not exist
+			a+= rw pointer at end create file if not exist
+			r = r pointer at beginning
+			r+= rw pointer at beginning
+			w = w delete existing content, attempts to create file if exist
+			w+ = rw delete existing content, attempts to create file if not exist
+			x = creates, opens file for w returns false if file exist
+			x+= create, opens file for rw returns false if exist
+		fclose(filename) making sure space in memory is not wasted
+		by default php opens a file in text mode. adding a b to the end of the method arg forces file to be opened in binary which no interpretation or conversion is done.
+		appending t to the end of the arg you can force the file to be convered to text mode. the escape seq from unix coverts to windows style
+	closing
+		using fclose() will close a file stream. closing the file stream also forces the file to be flushed. wwhen you write to a file the system often buffers the write command to a queue.
+		performing all buffered write commands is called flushing the write queue.
+
+write data incrementally
+	file_pt_contents() is useful if you want to replace contents of a file or append data to the end of an existing file
+	fwrite($handle, data[, length]) can be used to incrementall write data to a text file. returns number of bytes written to the file
+		to use fwrite you need to open handle to the text file with fopen()
+		because you use fopen with fwrite you can specify what type of operations can be performed on the file. where and how it will be written
+		you can only append or replace content to the end of the file.
+
+locking files
+	if multiple people are reading a file there is no problem. The problem comes in when there are multiple users writing to the same file. This will cause file corruption and a ball ache.
+	You need to use flock(handle, operation). handle = open file.
+		lock_ex = open file with exclusive lock for writing. Only you can write to file until you are done.	
+		lock_nb prevents flock() function from waiting or blocking until file is unlocked
+		lock_sh	opens file with shared lock for reading
+		lock_un release a file lock
+		lock_sh create a shared lock for reading which allows other users to read the file while you have it locked.
+		if the file has a lock on it already and you want to lock it you the system will wait for the other person to release the lock first then will attempt to lock it.
+reading data incrementally
+	Reading entire text files into server memory will cause major performance problems with the server.
+	instead of reading entire files you can use a file pointer to iterate though text files.
+	you need to use fopen() and fclose().
+
+Managing Files and Directories
+		you can use php to managefiles and directories that store them. php can allow you to do most operations found on an os. This includes copying moving renaming, deleting 
+	copying and moving files
+		Copy(source, destination) function to copy a file with php. The function returns a value of true if it is successful or false if it not.
+	renaming files and directories.
+		$rename(old name, new name) to rename or move a file or directory with php.
+	removing files and directories
+		unlink() to delete files and rmdir() to delete directories
+			both functions return true if success or false if failure.
+		rmdir() takes a bit more effort because it does not work unless a dir is empty.
+			determine if exists then scan dir.
