@@ -3,3 +3,6 @@ image not displaying,samsung,5.0,Monitor,Windows,constant,Buy a new Monitor
 Software Compatability problem,Windows,2.0,Destop tower,Other,Since Last week,no idea
 No Coffee,Coffee filter,1.102,coffee machine,Mac,often,asd
 No Coffee,Coffee filter,1.102,coffee machine,Mac,,asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58asd58
+yes 123,ok,ywp22,sadasd,Linux,5-10 times a day,hoyaaa
+samsung problems,yeasd,asdas,asdassd,Windows,asd,asdasdasdad
+samsung problems22,yeasd22,asdas22,asdassd22,Windows,,asdasdasdad222 added

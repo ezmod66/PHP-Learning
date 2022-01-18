@@ -42,7 +42,7 @@
         if ($errorCount == 0) {
             if (is_writable("bugs.txt")) {
                 if (fwrite($bugs, $reportName . "," . $prodName . "," . $prodVer . "," . $hardwareType . "," . $os . "," . $freq . "," . $proposedSolution . "\n")) {
-                    echo "Bug report Successfully created";
+                    echo "Bug report Successfully created Click here to return to the <a href='index.php'>Menu</a>";
                     //clear
                     $_POST = array();
                     //refresh
