@@ -21,6 +21,9 @@
                 case 'Delete First':
                     array_shift($messageArray);
                     break;
+                case 'Delete Last':
+                    array_pop($messageArray);
+                    break;
             }
 
             if(count($messageArray) > 0)
@@ -72,6 +75,9 @@
             echo "</table>\n";
         }
     ?>
-    <p><a href="PostMessage.php">Post New Message</a><br/><a href="MessageBoard.php?action=Delete%20First">Delete First Mesage</a></p>
+    <p><a href="PostMessage.php">Post New Message</a><br/>
+        <a href="MessageBoard.php?action=Delete%20First">Delete First Mesage</a><br/>
+        <a href="MessageBoard.php?action=Delete%20Last">Delete Last Message</a>
+    </p>
 </body>
 </html>
