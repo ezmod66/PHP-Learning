@@ -9,6 +9,43 @@
 <body>
     <h1>Message Board</h1>
     <?php
+    
+    if(isset($_GET['action']))
+    {
+        if((file_exists("messages.txt") && (filesize("messages.txt") != 0)))
+        {
+            $messageArray = file("messages.txt");
+
+            switch($_GET['action'])
+            {
+                case 'Delete First':
+                    array_shift($messageArray);
+                    break;
+            }
+
+            if(count($messageArray) > 0)
+            {
+                $newMessages = implode($messageArray);
+                $messageStore = fopen("messages.txt","wb");
+
+                if($messageStore === false)
+                {
+                    echo "There was an error updating the message file\n";
+                }
+                else
+                {
+                    fwrite($messageStore,$newMessages);
+                    fclose($messageStore);
+                }
+            }
+            else
+            {
+                unlink("messages.txt");
+            }
+        }
+    }
+
+        // check if file exists and there is content inside
         if((!file_exists("messages.txt")) || (filesize("messages.txt") == 0))
         {
             echo "<p>There are no messages posted.</p>\n";
@@ -35,6 +72,6 @@
             echo "</table>\n";
         }
     ?>
-    <p><a href="PostMessage.php">Post New Message</a></p>
+    <p><a href="PostMessage.php">Post New Message</a><br/><a href="MessageBoard.php?action=Delete%20First">Delete First Mesage</a></p>
 </body>
 </html>
