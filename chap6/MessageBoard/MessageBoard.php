@@ -24,6 +24,10 @@
                 case 'Delete Last':
                     array_pop($messageArray);
                     break;
+                    case 'Delete Message';
+                    if(isset($_GET['message']))
+                        array_splice($messageArray,$_GET['message'],1);
+                    break;
             }
 
             if(count($messageArray) > 0)
@@ -66,9 +70,13 @@
                 $currMsg = explode("~",$messageArray[$i]);
                 echo "<tr>\n";
                 echo "<td width=\"5%\" style=\"text-align:center;font-weight:bold;\">" . ($i + 1) . "</td>\n";
-                echo "<td width=\"95%\"><span style=\"font-weight:bold\">Subject: </span>" . htmlentities($currMsg[0]). " <br>\n";
+                echo "<td width=\"85%\"><span style=\"font-weight:bold\">Subject: </span>" . htmlentities($currMsg[0]). " <br>\n";
                 echo "<span style='font-weight:bold'>Name: </span>" . htmlentities($currMsg[1]) . "<br/>\n";
                 echo "<span style='text-decoration:underline; font-weight:bold'>Message</span><br/>\n" . htmlentities($currMsg[2]) . "</td>\n";
+                echo "<td width=\"10%\" style=\"text-align:center\">" . 
+                        "<a href='MessageBoard.php?" . 
+                        "action=Delete%20Message&" ."message=$i'>" .
+                        "Delete This Message</a></td>\n";
                 echo "</tr>\n";
                 
             }
