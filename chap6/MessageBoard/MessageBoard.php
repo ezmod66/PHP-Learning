@@ -20,14 +20,20 @@
             {
                 case 'Delete First':
                     array_shift($messageArray);
-                    break;
+                        break;
                 case 'Delete Last':
                     array_pop($messageArray);
-                    break;
+                        break;
                     case 'Delete Message';
                     if(isset($_GET['message']))
-                        array_splice($messageArray,$_GET['message'],1);
-                    break;
+                        $index = $_GET['message'];
+                        unset($messageArray[$index]);
+                        $messageArray = array_values($messageArray);
+                        break;
+                    case 'Remove Duplicates':
+                        $messageArray = array_unique($messageArray);
+                        $messageArray = array_values($messageArray);
+                        break;
             }
 
             if(count($messageArray) > 0)
@@ -84,8 +90,10 @@
         }
     ?>
     <p><a href="PostMessage.php">Post New Message</a><br/>
+        <a href="MessageBoard.php?action=Remove%20Duplicates">Remove Duplicate Messages<br></a>
         <a href="MessageBoard.php?action=Delete%20First">Delete First Mesage</a><br/>
         <a href="MessageBoard.php?action=Delete%20Last">Delete Last Message</a>
+
     </p>
 </body>
 </html>
