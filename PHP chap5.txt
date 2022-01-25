@@ -148,3 +148,11 @@ Managing Files and Directories
 			both functions return true if success or false if failure.
 		rmdir() takes a bit more effort because it does not work unless a dir is empty.
 			determine if exists then scan dir.
+
+
+1 - 216200   tax =56 212. take away = 159 988
+between 216 201- 337 800) = 121 599 of which tax = 31 615,74 take away = 89 983,26
+between 337 801 - 467 500 = 129 699 of which = 40 206,69 take away = 89 492,31
+between 467 501 – 613 600 = 146 099 of which = 52 595,64 take away = 93 503,36
+between 613 601 – 782 200 = 168 599 of which = 65 753,61 take away = 102 845,39
+between 782 201 – 1 656 600 = 874 399 of which = 358 503,59 take away = 515 895,41

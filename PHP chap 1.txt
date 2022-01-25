@@ -5,11 +5,11 @@
 	php is designed to fill the gap between static html and dynamic pages.
 	php is embedded into the XHTML source code.
 	called an embedded language because code like js it is directly put into the web page as a separate section.
-	needs to have a file extention of .php unless you use the php tag to add it onto the page.
-	if a request is made for a document with .php server sends the file to the scripting engine for processing. 
+	needs to have a file extention of .php 
+	if a request is made for a document with .php the server sends the file to the scripting engine for processing. 
 	- scripting engine then processes and php it encounters.the scripting engine ignores any non php code and only processes the php code it finds in the code block
-	- server then returns the results of the script and andy html or xhtml elements found in the file to the client. where file is rendered by clients web browser.
-	- the results are returned from script eg db recods and formatted with html elements.
+	- server then returns the results of the script and any html or xhtml elements found in the file to the client. where file is rendered by clients web browser.
+	- the results are returned from script eg db records and formatted with html elements.
 	- this means php code is never sent to client web browser only the results are generated
 	php not case sensative.
 	php is a loosyly typed language.

@@ -1,0 +1,24 @@
+-------------------------
+	Chapter 6
+-------------------------
+	two types of arrays. 
+	Indexed	refer to elements by their numeric position
+	Associative refer to elements with an alphanumeric key
+
+adding and removing elements from beginning of an array.
+	array_shift(arrName) removes first element at beginning of array
+	array_unshift(arrName,) add 1 or more elements  to beginning of the array.
+	
+adding and removing elements from the end of an array
+	normal way of going $names[] = "tim"; to add new element at the end
+	array_pop()	removes last element from end of array
+	array_push()	add one or more elements to end of array
+	unset()  pass in array name and index to remove. adding more ele to remove add , + name 	
+		unset does not renumber remaining elements in array.
+	array_values() can be used to renumber an indexed arrays elements. pass in name of array.
+		function does not work directly on the array but rather returns a new array with the renumbered indexes. 
+		for this you need to assign the returned array to a new variable name or to the original array.
+
+removing duplicate elements
+	array_unique() to remove duplicate elements from an array. pass in array name. creates new array when returned so you need to assign it to itself
+	
