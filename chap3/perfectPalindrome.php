@@ -9,7 +9,7 @@
 <body>
     <h1>Perfect Palindrome</h1><hr />
     <?php
-        $words = array(" Stanley Yelnats ", "Ma dam, I'm Adam", "raceCar", "Dogma I am God", "this is not a palindrome");
+        $words = array(" Stanley Yelnats ", "Ma dam, I'm Adam", "raceCar", "Dogma I am God", "this is not a palindrome", "Ho-Oh");
 
 
         foreach($words as $word)

@@ -24,13 +24,13 @@
                 case 'Delete Last':
                     array_pop($messageArray);
                         break;
-                    case 'Delete Message';
+                case 'Delete Message';
                     if(isset($_GET['message']))
                         $index = $_GET['message'];
                         unset($messageArray[$index]);
                         $messageArray = array_values($messageArray);
                         break;
-                    case 'Remove Duplicates':
+                case 'Remove Duplicates':
                         $messageArray = array_unique($messageArray);
                         $messageArray = array_values($messageArray);
                         break;

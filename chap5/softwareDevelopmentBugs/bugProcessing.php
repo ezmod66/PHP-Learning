@@ -26,10 +26,9 @@ function validateInput($data, $fieldName)
 //     echo $bugReports[$bugReportSelection][0];
 // }
 
-    function saveToFile($submit)
-    {
-        if (isset($submit)) 
-    {
+function saveToFile($submit)
+{
+    if (isset($submit)) {
         $reportName = ValidateInput($_POST['bugReportName'], "Bug Report Name");
         $prodName = validateInput($_POST['productName'], "Product Name");
         $prodVer = validateInput($_POST['productVersion'], "Production Version");
@@ -55,8 +54,8 @@ function validateInput($data, $fieldName)
                 echo "<p>Cannot Save to file.</p>";
             }
         }
-    }  
     }
+}
 
 
 ?>
