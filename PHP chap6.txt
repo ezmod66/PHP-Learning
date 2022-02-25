@@ -21,4 +21,66 @@ adding and removing elements from the end of an array
 
 removing duplicate elements
 	array_unique() to remove duplicate elements from an array. pass in array name. creates new array when returned so you need to assign it to itself
+
+Declaring and initializing Associative Arrays
+	php by default creates indexed arrays.
+	Associative arrays you can use any alphanumeric key that you want for the array elements. You specify elements key by using => in the array construct().
+	syntax for declaring an associative array:
+		$array_name = array(key => value, ...);
+	a nice example contains provinces and their capitals. each province is used as the element key and the name of each capital city is assigned as the elements value
+		$proviceialCapitals = array(	"Kwazulu-Natal" => "Durban",
+						"Gauteng" => "Pretoria");
+	you can also use the syntax to assign key values to an associative array by using array names and brackets. (When doing this you use the = and not =>)
+		$provicialCapitals["newfoundland and labrador"] = "St. John's";
+	The syntax creates the array if it doesn't exist. if the array exists each asssignment statement overwrites any existing elements that already use the same key or appends any new keys and values to the end of the array
 	
+	To refer to an element in an associative array, you place an elements key in quotes inside the array brackets.
+		eg {$ProvincialCaptials['Quebec']}
+	if you create an assoc array and then add a new element with out specifying a key, php automatically assumes the array is indexed and assigns the element an index of 0 or the next available index.
+
+	the functionality of assoc arrays allows you to start numbering of indexed arrayes at any index you want.
+
+Iterating through an array
+	the following example is a refresher that declares and instantiates and indexed array named $DaysOfWeek[].
+		$DaysOfWeek = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saterday", "Sunday")
+		foreach($DaysOfWeek as $Day){
+		echo "<p>$day</p>";
+	The internal array pointer is a special type of variable that refers to the currently selected element in an array. The internal array pointer is a way of keeping tracking of which element you are working with in an array
+	Array pointer methods on pg 323
+	why do you need iteration functions at all. because array keys in assoc array might not be in a predictable sequence you cant always use a looping statement to determine which element you are currently working with in assoc arrays.
+	to loop through an assoc array you can use next() 325
+
+Finding and extracting elements and values
+	in_array() determines whether a value exists in an array. returns booleans
+	array_search() determines whether a given value exists in an array. returns index or key of first matching element 
+		both arguement represents the name of array 
+	small tipis when working with arrays to make sure your keys or indexes are always unique	
+
+Determining if a key exists
+	to determnine if a specific value exiss in an array, you can use array_key_exists() to determine whether a given index or key exists.
+	you pass in two variables. 1 needle(key) 2 array(haystack)
+	array_keys() 1 needle(key) 2 array(haystack)
+
+Return a portion of an Array
+	array_slice( arr name, start index, num to return) to return a portion of array and assign it to another array. 
+	array_splice deleting a portion of an array.
+
+	splice removes elements while slice returns an array of those elements (copied)
+
+manipulating arrays
+	array_multisort() sort multiple arrays or multidimensional arrays
+	arsort() 	sort arr in desc order by value and maintain existing keys for assoc array
+	asort() 	sort in asc order by value maintain existing keys
+	krsort() 	sort arr in desc order by key and maintain existing ekys
+	ksort() 	sort array in asc order by key and maintain existing keys
+	natcasesort()	perofrm case sensitive natural order sort by value maintain keys
+	natsort()	case insensitive sort by val and maintain existing keys
+	rsort()		sort array in desc order by val remove existing keys for assoc array and renumber the index starting from 0
+	sort()		sort array in asc order by val remove existing keys from assoc array renumber indexes from  0
+	uaksort()	sort array in asc order by val using comparison functions and maintain keys
+	uksort()	sort array in scending order by key using comparison function and maintain keys
+	usort()		sort array in asc order by val using comparison function, removes keys for assoc and renumbers indexes from 0
+
+	most common used are sort and rsort for indexed arrays
+	asort arsort ksort and krsort for assoc arrays.
+	2 natural sorts the algo treats one or more successive numeric chars as int val sorts by inv
