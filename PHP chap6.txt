@@ -103,3 +103,22 @@ comparing arrays
 				to renumber it
 				new_array = array_intersect(array1, array 2 [, array 3, ...]);
 
+Understanding Multi-Dimentional arrays
+	
+Creating two dimensional indexed arrays
+	mulidimensional array in php is an array of arrays.
+	To declare and initialize a multidimenional array with data you include of the array names as an element value in a new declaration.
+	eg $volumeConversions = array($ounces, $cups, $pints, $quarts, $gallons); each of which are arrays.
+
+creating two-dimensional associative arrays
+	the primary diff between this array and the previous is that you need to specify the key for each element. (eg key -> 1 value = 22)
+	you can access elements in the preceding arrays by specifying an elements key.
+	Loooking at the $volumeConversions above.
+	to access an this array you have to specify what you want. if you are looking for cups you would go $volumeConversions[3]["cups"]
+	although this is legal it is confusing. to make both dimensions associative, assign keys to each of the array names tha declares and initializes the voklumeConversions array.
+	when you declare this such as $volumeConversions = array("ounce" => $ounces, "cups" => $cups, "pints" => $pints,"quarts" => $quarts,"gallons" => $gallons); each of which are arrays.
+	you can then  call like so $VolumeConversions['quarts']['cups'] = 4
+
+creating multidimensional arrays with a single statement.
+	Remember to properly format code when creating and assigning in a single statement.
+	
