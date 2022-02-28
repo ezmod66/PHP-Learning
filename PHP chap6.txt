@@ -1,5 +1,5 @@
 -------------------------
-	Chapter 6
+	Chapter 6	
 -------------------------
 	two types of arrays. 
 	Indexed	refer to elements by their numeric position
@@ -84,3 +84,22 @@ manipulating arrays
 	most common used are sort and rsort for indexed arrays
 	asort arsort ksort and krsort for assoc arrays.
 	2 natural sorts the algo treats one or more successive numeric chars as int val sorts by inv
+
+Combining Arrays
+	you ahve two options. Either append one to the other or merge the two arrays.
+	+= to append one array to another,primary is on the left and right side is secondary.
+	array_merge() $new_array = array_merge(arr1, arr2);
+		array1 is coppied to the new array then array 2 is appended to the new array,if used
+		in an assoc array the keys in the array you appending overtie any duplicate keys from previously merged arrays.
+		with indexed all elements in one are appended to another and renumbered
+
+comparing arrays
+	Two of the most common comparison functions are 
+		array_diff()	returns array of elements that exist in one array but not in any other array. Keys and indexes are not renumbered in the new array.
+				returns the difference of values. first param is the array that you want to check against other arrays. seems like there can be multiple different params
+				$new_array = array_diff(array1, array2 [, array3, ...]);
+		array_intersect()
+				returns array of elements that are common to all of the arrays that are compared. Like array_diff the keys and indexes are not renumbered in the new array. so you must use array_values()
+				to renumber it
+				new_array = array_intersect(array1, array 2 [, array 3, ...]);
+
