@@ -120,5 +120,5 @@ creating two-dimensional associative arrays
 	you can then  call like so $VolumeConversions['quarts']['cups'] = 4
 
 creating multidimensional arrays with a single statement.
-	Remember to properly format code when creating and assigning in a single statement.
+	Remember to properly format code when creating and assigning in a single statement.The code can get really confusing really fast. for your own sanity make it formatted
 	
