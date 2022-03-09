@@ -13,7 +13,7 @@ I will be using the book "PHP programming with mysql second edition by Don Gosse
   <li><p>String Manipulation             - done</p></li>
   <li><p>Handeling user Input            - done</p></li>
   <li><p>Files and Directories           - done</p></li>
-  <li><p>Array Manipulation (In Depth)   - pending</p></li>
+  <li><p>Array Manipulation (In Depth)   - done</p></li>
   <li><p>Database Fundamentals           - pending</p></li>
   <li><p>Database Manipulation           - pending</p></li>
   <li><p>State Information               - pending</p></li>
