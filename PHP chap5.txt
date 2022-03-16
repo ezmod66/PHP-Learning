@@ -117,7 +117,7 @@ FileStreams
 		performing all buffered write commands is called flushing the write queue.
 
 write data incrementally
-	file_pt_contents() is useful if you want to replace contents of a file or append data to the end of an existing file
+	file_put_contents() is useful if you want to replace contents of a file or append data to the end of an existing file
 	fwrite($handle, data[, length]) can be used to incrementall write data to a text file. returns number of bytes written to the file
 		to use fwrite you need to open handle to the text file with fopen()
 		because you use fopen with fwrite you can specify what type of operations can be performed on the file. where and how it will be written
